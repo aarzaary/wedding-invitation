@@ -7,12 +7,13 @@ export const time = () => {
     const addressParagraph = timeContainer.querySelector('a + p');
 
     const createTimeListItem = (title, details) => (
-        `<h3>${title}</h3>
-         <p>${details.day}, ${details.date} ${details.month} ${details.year} <br> 
+        `<h3>${title}</h3>` +
+        (title === 'Akad' ? '<p><strong><i>(Keluarga & Teman dekat)</i></strong></p>' : '') +
+        `<p>${details.day}, ${details.date} ${details.month} ${details.year} <br> 
          Pukul ${details.hours.start} WIB sd ${details.hours.finish}</p>`
     );
 
-    marriageDiv.innerHTML = createTimeListItem('Akad (hanya keluarga)', data.time.marriage);
+    marriageDiv.innerHTML = createTimeListItem('Akad', data.time.marriage);
     receptionDiv.innerHTML = createTimeListItem('Ngunduh Mantu', data.time.reception);
 
     mapLink.href = data.link.map;

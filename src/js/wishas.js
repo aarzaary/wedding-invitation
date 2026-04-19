@@ -68,8 +68,8 @@ export const wishas = () => {
                      <div style="background-color: ${data.color}">${data.name.charAt(0).toUpperCase()}</div>
                      <div>
                          <h4>${name}</h4>
-                         <p><b>${date}</b></p>
-                         <p style="border: 1px solid black; padding: 5px; border-radius: 10px;"><b>${data.message}</b></p>
+                         <p><strong>${date}</strong></p>
+                         <p style="border: 1px solid black; padding: 5px; border-radius: 10px;"><strong>${data.message}</strong></p>
                      </div>
                  </li>`;
     };
@@ -103,7 +103,7 @@ export const wishas = () => {
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        buttonForm.textContent = 'Loading...';
+        buttonForm.textContent = 'Sedang Mengirim...';
 
         const comentar = {
             id: generateRandomId(),
