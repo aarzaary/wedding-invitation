@@ -10,11 +10,10 @@ export const comentarService = {
         }
     },
 
-    addComentar: async function ({id, name, status, message, date, color}) {
+    addComentar: async function ({id, name, message, date, color}) {
         const comentar = {
             id: id,
             name: name,
-            status: status,
             message: message,
             date: date,
             color: color,

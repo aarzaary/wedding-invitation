@@ -4,16 +4,19 @@ import {
     generateRandomColor,
     generateRandomId,
     getCurrentDateTime,
-    renderElement
+    renderElement,
+	getQueryParameter
 } from "../utils/helper.js";
 import {data} from "../assets/data/data.js";
 import {comentarService} from "../services/comentarService.js";
 
 export const wishas = () => {
+	const name_form = document.querySelector('#name');
+	const params = getQueryParameter('to');
     const wishasContainer = document.querySelector('.wishas');
     const [_, form] = wishasContainer.children[2].children;
     const [peopleComentar, ___, containerComentar] = wishasContainer.children[3].children;
-    const buttonForm = form.children[6];
+    const buttonForm = form.children[4];
     const pageNumber = wishasContainer.querySelector('.page-number');
     const [prevButton, nextButton] = wishasContainer.querySelectorAll('.button-grup button');
 
@@ -67,8 +70,8 @@ export const wishas = () => {
                      <div style="background-color: ${data.color}">${data.name.charAt(0).toUpperCase()}</div>
                      <div>
                          <h4>${name}</h4>
-                         <p>${date} <br>${data.status}</p>
-                         <p>${data.message}</p>
+                         <p><b>${date}</b></p>
+                         <p style="border: 1px solid black; padding: 5px; border-radius: 10px;"><b>${data.message}</b></p>
                      </div>
                  </li>`;
     };
@@ -107,7 +110,6 @@ export const wishas = () => {
         const comentar = {
             id: generateRandomId(),
             name: e.target.name.value,
-            status: e.target.status.value === 'y' ? 'Hadir' : 'Tidak Hadir',
             message: e.target.message.value,
             date: getCurrentDateTime(),
             color: generateRandomColor(),
@@ -127,6 +129,7 @@ export const wishas = () => {
         } finally {
             buttonForm.textContent = 'Kirim';
             form.reset();
+			name_form.value = params;
         }
     });
 

@@ -13,7 +13,7 @@ export const time = () => {
     );
 
     marriageDiv.innerHTML = createTimeListItem('Akad', data.time.marriage);
-    receptionDiv.innerHTML = createTimeListItem('Resepsi', data.time.reception);
+    receptionDiv.innerHTML = createTimeListItem('Ngunduh Mantu', data.time.reception);
 
     mapLink.href = data.link.map;
     addressParagraph.textContent = data.time.address;

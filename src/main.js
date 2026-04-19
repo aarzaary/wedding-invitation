@@ -15,6 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     home();
     bride()
     time();
-    galeri();
+    // galeri();
     wishas();
 });

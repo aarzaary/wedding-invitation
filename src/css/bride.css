@@ -9,13 +9,13 @@
 .bride h2 {
     font-size: 1.6rem;
     font-family: var(--arabic);
-    font-weight: 400;
+    font-weight: 700;
 }
 
 .bride h3 {
     font-size: var(--fontSize-heading-base);
     font-family: var(--sacramento);
-    font-weight: 400;
+    font-weight: 700;
     margin: 1rem 0;
 }
 
@@ -50,12 +50,13 @@
     font-size: var(--fontSize-heading-base);
     margin: 1rem 0;
     font-family: var(--sacramento);
+	font-weight: 700;
 }
 
 .bride .bride_couple span {
     font-size: 3.4rem;
     font-family: var(--sacramento);
-    font-weight: 400;
+    font-weight: 700;
     margin-top: 1rem;
 }
 
@@ -103,7 +104,7 @@
 .hadist h2 {
     font-size: var(--fontSize-heading-base);
     font-family: var(--sacramento);
-    font-weight: 400;
+    font-weight: 700;
     margin-bottom: 1rem;
 }
 

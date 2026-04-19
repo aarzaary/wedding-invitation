@@ -2,18 +2,18 @@ export const data = {
     bride: {
         L: {
             id: 1,
-            name: 'Lorem Ipsum',
-            child: 'Putra ke lorem',
-            father: 'Lorem',
-            mother: 'Ipsum',
+            name: 'Ari Ardianto',
+            child: 'Putra ke 4',
+            father: '(alm) Suparman',
+            mother: 'Tuminem',
             image: './src/assets/images/cowo.png'
         },
         P: {
             id: 2,
-            name: 'Ipsum Lorem',
-            child: 'Putri ke lorem',
-            father: 'Lorem',
-            mother: 'Ipsum',
+            name: 'Siti Aniroh',
+            child: 'Putri ke 4',
+            father: 'Samsudin',
+            mother: 'Siti Maryati',
             image: './src/assets/images/cewe.png'
         },
 
@@ -22,31 +22,31 @@ export const data = {
 
     time: {
         marriage: {
-            year: '2030',
+            year: '2026',
             month: 'November',
-            date: '14',
-            day: 'Kamis',
+            date: '27',
+            day: "Jum'at",
             hours: {
-                start: '08.00',
+                start: '09.00',
                 finish: 'Selesai'
             }
         },
         reception: {
-            year: '2024',
+            year: '2026',
             month: 'November',
-            date: '14',
-            day: 'Kamis',
+            date: '28',
+            day: 'Sabtu',
             hours: {
-                start: '11.00',
+                start: '09.00',
                 finish: 'Selesai'
             }
         },
-        address: 'Kp. Lorem, RT 000/ RW 000, Desa.Lorem, Kec.Ipsum, Kab.Lorem, Lorem (1234)'
+        address: 'Jogahan RT 03, Suren Wetan, Canden, Jetis, Bantul, Yogyakarta (55781)'
     },
 
     link: {
         calendar: 'https://calendar.app.google/oSVLRMYC79GzuA4f9',
-        map: 'https://maps.app.goo.gl/q1Ask2Jgd4ekiiKBA',
+        map: 'https://maps.app.goo.gl/kRMLqU7PWMp7SSpu9',
     },
 
     galeri: [
@@ -75,21 +75,21 @@ export const data = {
     bank: [
         {
             id: 1,
-            name: 'Lorem Ipsum',
+            name: 'Ari Ardianto',
             icon: './src/assets/images/bca.png',
-            rekening: '12345678'
+            rekening: '4451974895'
         },
         {
             id: 2,
-            name: 'Ipsum Lorem',
-            icon: './src/assets/images/bri.png',
-            rekening: '12345678'
+            name: 'Siti Aniroh',
+            icon: './src/assets/images/sea.webp',
+            rekening: '901550988250'
         },
     ],
 
     audio: './src/assets/audio/wedding.mp3',
 
-    api: 'https://script.google.com/macros/s/AKfycbyydz6N4p2VWUG8zsXeURv6ap9RP8a4eC3x6N3x6qTDjMVr1cIBz9S0NsHw2rWvBOSXGg/exec',
+    api: 'https://script.google.com/macros/s/AKfycbxVGd-pUXqkFZPN1qGaOnM-XN-dVc31UiBVF5IsCfwnYtzdJVrn5X_XtEhZ0T8azdJETA/exec',
 
     navbar: [
         {
@@ -109,12 +109,6 @@ export const data = {
             teks: 'Tanggal',
             icon: 'bx bxs-calendar-check',
             path: '#time',
-        },
-        {
-            id: 4,
-            teks: 'Galeri',
-            icon: 'bx bxs-photo-album',
-            path: '#galeri',
         },
         {
             id: 5,
