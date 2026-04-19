@@ -20,12 +20,18 @@ export const welcome = () => {
     };
 
     const generateParameterContent = () => {
+        let localName = localStorage.getItem('name');
         const name = document.querySelector('#name');
         const params = getQueryParameter('to');
 
-        if (params) {
-            weddingToElement.innerHTML = `Kepada Yth Bapak/Ibu/Saudara/i<br><span>${params}</span>`;
-            name.value = params;
+        if (String(localName) === "null") {
+            localStorage.setItem('name', params);
+            localName = params;
+        }
+
+        if (localName !== null) {
+            weddingToElement.innerHTML = `Kepada Yth Bapak/Ibu/Saudara/i<br><span>${localName}</span>`;
+            name.value = localName;
         } else {
             weddingToElement.innerHTML = `Kepada Yth Bapak/Ibu/Saudara/i<br><span>Teman-teman semua</span>`;
         }

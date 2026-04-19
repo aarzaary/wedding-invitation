@@ -5,14 +5,12 @@ import {
     generateRandomId,
     getCurrentDateTime,
     renderElement,
-	getQueryParameter
 } from "../utils/helper.js";
 import {data} from "../assets/data/data.js";
 import {comentarService} from "../services/comentarService.js";
 
 export const wishas = () => {
-	const name_form = document.querySelector('#name');
-	const params = getQueryParameter('to');
+    const name_form = document.querySelector('#name');
     const wishasContainer = document.querySelector('.wishas');
     const [_, form] = wishasContainer.children[2].children;
     const [peopleComentar, ___, containerComentar] = wishasContainer.children[3].children;
@@ -109,7 +107,7 @@ export const wishas = () => {
 
         const comentar = {
             id: generateRandomId(),
-            name: e.target.name.value,
+            name: localStorage.getItem('name'),
             message: e.target.message.value,
             date: getCurrentDateTime(),
             color: generateRandomColor(),
@@ -129,7 +127,7 @@ export const wishas = () => {
         } finally {
             buttonForm.textContent = 'Kirim';
             form.reset();
-			name_form.value = params;
+            name_form.value = localStorage.getItem('name');
         }
     });
 
