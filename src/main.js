@@ -9,7 +9,6 @@ import {welcome} from "./js/welcome.js";
 // load content
 document.addEventListener('DOMContentLoaded', () => {
     AOS.init();
-
     welcome();
     navbar();
     home();
