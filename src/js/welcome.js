@@ -34,6 +34,7 @@ export const welcome = () => {
             name.value = localName;
         } else {
             weddingToElement.innerHTML = `Kepada Yth Bapak/Ibu/Saudara/i<br><span>Teman-teman semua</span>`;
+            name.value = "Anonim";
         }
     }
 

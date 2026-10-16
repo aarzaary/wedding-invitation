@@ -29,9 +29,7 @@ export const wishas = () => {
     const initialBank = () => {
         const wishasBank = wishasContainer.children[1];
         const [_, __, containerBank] = wishasBank.children;
-
         renderElement(data.bank, containerBank, listItemBank);
-
         containerBank.querySelectorAll('button').forEach((button) => {
             button.addEventListener('click', async (e) => {
                 const rekening = e.target.dataset.rekening;
@@ -107,7 +105,7 @@ export const wishas = () => {
 
         const comentar = {
             id: generateRandomId(),
-            name: localStorage.getItem('name'),
+            name: localStorage.getItem('name') === "null" ? "Anonim" : localStorage.getItem('name'),
             message: e.target.message.value,
             date: getCurrentDateTime(),
             color: generateRandomColor(),
@@ -115,11 +113,8 @@ export const wishas = () => {
 
         try {
             const response = await comentarService.getComentar();
-
             await comentarService.addComentar(comentar);
-
             lengthComentar = response.comentar.length;
-
             peopleComentar.textContent = `${++response.comentar.length} Orang telah mengucapkan`;
             containerComentar.insertAdjacentHTML('afterbegin', listItemComentar(comentar));
         } catch (error) {
@@ -127,7 +122,7 @@ export const wishas = () => {
         } finally {
             buttonForm.textContent = 'Kirim';
             form.reset();
-            name_form.value = localStorage.getItem('name');
+            name_form.value = localStorage.getItem('name') === "null" ? "Anonim" : localStorage.getItem('name');
         }
     });
 
