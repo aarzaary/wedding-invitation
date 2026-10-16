@@ -15,7 +15,7 @@ export const home = () => {
     };
 
     const generateTimeContent = ({time}) => {
-        const {year, month, date, day} = time.marriage;
+        const {year, month, date, day} = time.reception;
         return `
         <time datetime="${year}-${String(monthNameToNumber(month)).padStart(2, '0')}-${String(date).padStart(2, '0')}">
             ${day}, ${date} ${month} ${year}
@@ -37,7 +37,7 @@ export const home = () => {
                 </div>`;
     };
 
-    const updateCountdown = (endTime, homeTime) => {
+    const updateCountdown = (endTime, homeTime, stopCountdown) => {
         const now = new Date().getTime();
         const distance = endTime - now;
 
@@ -47,7 +47,7 @@ export const home = () => {
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         if (distance < 0) {
-            clearInterval(intervalId);
+            stopCountdown();
             homeTime.innerHTML = generateCountdownMarkup(0, 0, 0, 0);
         } else {
             homeTime.innerHTML = generateCountdownMarkup(days, hours, minutes, seconds);
@@ -55,11 +55,13 @@ export const home = () => {
     };
 
     const startCountdown = (homeTime, timeData) => {
-        const {year, month, date} = timeData.marriage;
+        const {year, month, date} = timeData.reception;
         const endTime = new Date(`${String(year)}-${String(monthNameToNumber(month)).padStart(2, '0')}-${String(date).padStart(2, '0')}T00:00:00`);
+        let intervalId;
+        const stopCountdown = () => clearInterval(intervalId);
 
-        updateCountdown(endTime, homeTime);
-        setInterval(() => updateCountdown(endTime, homeTime), 1000);
+        updateCountdown(endTime, homeTime, stopCountdown);
+        intervalId = setInterval(() => updateCountdown(endTime, homeTime, stopCountdown), 1000);
     };
 
     const initializeHome = () => {

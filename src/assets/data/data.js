@@ -27,7 +27,7 @@ export const data = {
             date: '27',
             day: "Jum'at",
             hours: {
-                start: '09.00',
+                start: '10.00',
                 finish: 'Selesai'
             }
         },

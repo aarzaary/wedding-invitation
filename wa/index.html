@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>WA Bulk Generator</title>
+  <link data-default-icon="wa.webp" rel="shortcut icon" href="wa.webp" />
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+  <div class="card shadow-sm">
+    <div class="card-body">
+
+      <h4 class="text-center mb-4">Bulk WhatsApp Generator</h4>
+
+      <div class="mb-3">
+        <label class="form-label">Data (Nama,Nomor)</label>
+        <textarea id="data" class="form-control" rows="5"
+placeholder="Ary,+62 896-2637-8991
+Budi,0896 2637 8991"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Template Pesan</label>
+        <textarea id="template" class="form-control" rows="3"
+placeholder="Halo {nama}, ini pesan saya">_Bissmillahirrahmanirrahim_
+_Assalamualaikum Warahmatullahi Wabarakatuh_
+Kepada Yth:
+{nama}
+
+Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i - {nama} - untuk menghadiri acara kami. 
+
+Untuk Info Detail Acara, Lokasi, dan Waktu lebih lengkap bisa akses link Undangan Online berikut:
+https://ari.aniroh.app?to={nama_url}
+
+Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Rekan-rekan berkenan hadir dan memberikan doa restu di acara pernikahan kami.
+
+Hormat Kami yang berbahagia
+*Ari dan Aniroh*
+
+_Wassalamualaikum Warahmatullahi Wabarakatuh_</textarea>
+      </div>
+
+      <button id="generate" class="btn btn-success w-100">Generate</button>
+
+      <div class="mt-4 d-none" id="resultBox">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped align-middle">
+            <thead class="table-dark">
+              <tr>
+                <th class="text-center">No</th>
+                <th class="text-center">Nama</th>
+                <th class="text-center">Nomor</th>
+                <th class="text-center">Link</th>
+              </tr>
+            </thead>
+            <tbody id="resultTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+function normalizePhone(input) {
+  let num = input.replace(/[^\d+]/g, "");
+
+  if (num.startsWith("+62")) {
+    num = num.replace("+62", "62");
+  } else if (num.startsWith("0")) {
+    num = "62" + num.substring(1);
+  }
+
+  return num;
+}
+
+$(document).ready(function() {
+
+  $(document).on("click", ".wa-link", function() {
+  let row = $(this).closest("tr");
+  row.removeClass().addClass("table-danger");
+  });
+
+  $("#generate").click(function() {
+    let raw = $("#data").val().trim();
+    let template = $("#template").val();
+
+    if (!raw) {
+      alert("Data kosong!");
+      return;
+    }
+
+    let lines = raw.split(/\n/);
+    let table = "";
+    let no = 1;
+
+    lines.forEach(line => {
+      line = line.trim();
+      if (!line) return;
+
+      // split pakai TAB atau koma (biar nama bisa spasi)
+      let parts = line.split(/\t|,/);
+
+      let nama = parts[0]?.trim();
+      let nomorRaw = parts[1]?.trim();
+
+      if (!nama || !nomorRaw) return;
+
+      // normalize nomor
+      let nomor = normalizePhone(nomorRaw);
+
+      // encode khusus URL
+      let namaEncoded = encodeURIComponent(nama);
+
+      // replace template
+      let pesan = template
+        .replaceAll("{nama}", nama)
+        .replaceAll("{nama_url}", namaEncoded);
+
+      // encode full pesan untuk WA
+      let encodedPesan = encodeURIComponent(pesan);
+
+      let link = `https://wa.me/${nomor}?text=${encodedPesan}`;
+
+      table += `
+        <tr>
+          <td class="text-center">${no++}</td>
+          <td class="text-center">${nama}</td>
+          <td class="text-center">${nomor}</td>
+          <td class="text-center">
+            <a href="${link}" target="_blank" class="btn btn-sm btn-primary wa-link">
+              Buka WhatsApp
+            </a>
+          </td>
+        </tr>
+      `;
+    });
+
+    $("#resultTable").html(table);
+    $("#resultBox").removeClass("d-none");
+  });
+
+});
+</script>
+
+</body>
+</html>
