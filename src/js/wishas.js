@@ -8,6 +8,8 @@ import {
 } from "../utils/helper.js";
 import {data} from "../assets/data/data.js";
 import {comentarService} from "../services/comentarService.js";
+import {getQueryParameter} from "../utils/helper.js";
+import {dec} from "../utils/crypto.js";
 
 export const wishas = () => {
     const name_form = document.querySelector('#name');
@@ -99,13 +101,26 @@ export const wishas = () => {
         }
     };
 
+    const params = getQueryParameter('to');
+    let toName;
+    try {
+        toName = dec(params);
+    } catch (e) {
+        toName = "Anonim";
+        console.error("Error decoding parameter:", e);
+    }
+
+    if (toName === "Anonim") {
+      document.getElementById('wishas-form').style.display = 'none';
+    }
+  
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         buttonForm.textContent = 'Sedang Mengirim...';
 
         const comentar = {
             id: generateRandomId(),
-            name: localStorage.getItem('name') === "null" ? "Anonim" : localStorage.getItem('name'),
+            name: toName,
             message: e.target.message.value,
             date: getCurrentDateTime(),
             color: generateRandomColor(),
@@ -122,7 +137,7 @@ export const wishas = () => {
         } finally {
             buttonForm.textContent = 'Kirim';
             form.reset();
-            name_form.value = localStorage.getItem('name') === "null" ? "Anonim" : localStorage.getItem('name');
+            name_form.value = toName;
         }
     });
 

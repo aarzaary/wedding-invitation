@@ -69,6 +69,7 @@ _Wassalamualaikum Warahmatullahi Wabarakatuh_</textarea>
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="crypto.js"></script>
 
 <script>
 function normalizePhone(input) {
@@ -119,7 +120,7 @@ $(document).ready(function() {
       let nomor = normalizePhone(nomorRaw);
 
       // encode khusus URL
-      let namaEncoded = encodeURIComponent(nama);
+      let namaEncoded = enc(nama);
 
       // replace template
       let pesan = template

@@ -1,5 +1,6 @@
 import {data} from "../assets/data/data.js";
 import {addClassElement, getQueryParameter, removeClassElement} from "../utils/helper.js";
+import {dec} from "../utils/crypto.js";
 
 export const welcome = () => {
     const welcomeElement = document.querySelector('.welcome');
@@ -20,21 +21,17 @@ export const welcome = () => {
     };
 
     const generateParameterContent = () => {
-        let localName = localStorage.getItem('name');
         const name = document.querySelector('#name');
         const params = getQueryParameter('to');
 
-        if (String(localName) === "null") {
-            localStorage.setItem('name', params);
-            localName = params;
-        }
-
-        if (localName !== null) {
-            weddingToElement.innerHTML = `Kepada Yth Bapak/Ibu/Saudara/i<br><span>${localName}</span>`;
-            name.value = localName;
-        } else {
-            weddingToElement.innerHTML = `Kepada Yth Bapak/Ibu/Saudara/i<br><span>Teman-teman semua</span>`;
-            name.value = "Anonim";
+        try {
+        const toName = dec(params);
+          weddingToElement.innerHTML = `Kepada Yth Bapak/Ibu/Saudara/i<br><span>${toName}</span>`;
+          name.value = toName;
+        } catch (e) {
+          weddingToElement.innerHTML = `Kepada Yth Bapak/Ibu/Saudara/i<br><span>Teman-teman semua</span>`;
+          name.value = "Anonim";
+          console.error("Error decoding parameter:", e);
         }
     }
 
