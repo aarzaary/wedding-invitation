@@ -27,8 +27,8 @@ export const data = {
             date: '27',
             day: "Jum'at",
             hours: {
-                start: '10.00',
-                finish: 'Selesai'
+                start: '13.00',
+                finish: '15.00'
             }
         },
         reception: {
@@ -37,16 +37,18 @@ export const data = {
             date: '28',
             day: 'Sabtu',
             hours: {
-                start: '09.00',
-                finish: 'Selesai'
+                start: '13.00',
+                finish: '15.00'
             }
         },
-        address: 'Jogahan RT 03, Suren Wetan, Canden, Jetis, Bantul, Yogyakarta (55781)'
+        address: 'Pranan, Banjaroya, Kalibawang, Kulon Progo',
+        address2: 'Jogahan RT 03, Suren Wetan, Canden, Jetis, Bantul, Yogyakarta'
     },
 
     link: {
         calendar: 'https://calendar.app.google/oSVLRMYC79GzuA4f9',
-        map: 'https://maps.app.goo.gl/kRMLqU7PWMp7SSpu9',
+        map: 'https://maps.app.goo.gl/RDpDy1zD2cZYKVu78',
+        map2: 'https://maps.app.goo.gl/JzLuZarmHXuzDGh6A'
     },
 
     galeri: [

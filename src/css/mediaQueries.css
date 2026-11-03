@@ -56,9 +56,14 @@
         bottom: -5rem;
     }
 
-    .time a + p + i {
+    #map + p + i {
         right: 1.4rem;
         top: 16rem;
+    }
+
+    #map2 + p + i {
+        left: -14.4rem;
+        top: 36rem;
     }
 
     .galeri {

@@ -60,12 +60,17 @@
     margin-top: 1rem;
 }
 
-.bride i, .hadist i, .time a + p + i, .galeri > i {
+.bride i, .hadist i,  #map + p + i,  #map2 + p + i,  .galeri > i {
     font-size: 3rem;
     color: #908d8d;
     position: absolute;
     z-index: 10;
     animation: upAndDown 3s infinite;
+}
+
+#map2 + p + i {
+    top: 36rem;
+    left: -46rem;
 }
 
 .bride i:nth-of-type(1) {
