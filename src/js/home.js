@@ -2,6 +2,10 @@ import {data} from "../assets/data/data.js";
 import {monthNameToNumber} from "../utils/helper.js";
 
 export const home = () => {
+    const {time: timeData} = data;
+    const {year, month, date} = timeData.marriage;
+    const checktime = new Date(`${String(year)}-${String(monthNameToNumber(month)).padStart(2, '0')}-${String(date).padStart(2, '0')}T00:00:00`);
+
     const homeContainer = document.querySelector('.home');
     const [_, figureElement, timeElement, homeTime, calendarAnchor] = homeContainer.children;
 
@@ -13,9 +17,9 @@ export const home = () => {
                 ${brideLName.split(' ')[0]} & ${bridePName.split(' ')[1]}
             </figcaption>`;
     };
-
+    
     const generateTimeContent = ({time}) => {
-        const {year, month, date, day} = time.marriage;
+        const {year, month, date, day} = checktime > new Date().getTime() ? time.marriage : time.reception;
         return `
         <time datetime="${year}-${String(monthNameToNumber(month)).padStart(2, '0')}-${String(date).padStart(2, '0')}">
             ${day}, ${date} ${month} ${year}
@@ -55,7 +59,7 @@ export const home = () => {
     };
 
     const startCountdown = (homeTime, timeData) => {
-        const {year, month, date} = timeData.marriage;
+        const {year, month, date} = checktime > new Date().getTime() ? timeData.marriage : timeData.reception;
         const endTime = new Date(`${String(year)}-${String(monthNameToNumber(month)).padStart(2, '0')}-${String(date).padStart(2, '0')}T00:00:00`);
         let intervalId;
         const stopCountdown = () => clearInterval(intervalId);
